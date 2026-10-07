@@ -17,7 +17,8 @@ export const MainPage = () => {
     return (
         <>
         <div className="page-title">
-            <h1>Ricette Vegetariane</h1>
+            <h1>Ricerca ricette vegetariane</h1>
+            <p>Inserisci una parola chiave e premi "Vai" per cercare ricette deliziose!</p>
         </div>
 
         
