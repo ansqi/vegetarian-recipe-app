@@ -1,5 +1,5 @@
 import {RecipesList} from '../components/recipes-list'
-import '../app.css'
+import '../App.css'
 import { useState, type ChangeEvent, type SubmitEvent } from 'react';
 
 export const MainPage = () => {

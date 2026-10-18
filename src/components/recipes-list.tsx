@@ -15,11 +15,16 @@ export function RecipesList({ searchQuery }: RecipeListProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let active = true;
+
     // Non eseguiamo la ricerca se la query è vuota
     if (!searchQuery) {
       setRecipes([]); // Pulisci le ricette se la query è vuota
       setError(null);
-      return;
+      setIsLoading(false);
+      return () => {
+        active = false;
+      };
     }
 
     const fetchRecipes = async () => {
@@ -30,17 +35,23 @@ export function RecipesList({ searchQuery }: RecipeListProps) {
         // Effettua la richiesta GET con Axios
         const response = await searchRecipes(searchQuery);
 
-        setRecipes(response);
+        if (active) setRecipes(response);
       } catch (err) {
-        console.error("Errore durante il recupero delle ricette:", err);
-        setError("Impossibile caricare le ricette. Riprova più tardi.");
-        setRecipes([]); // Pulisci le ricette in caso di errore
+        if (active) {
+          console.error("Errore durante il recupero delle ricette:", err);
+          setError("Impossibile caricare le ricette. Riprova più tardi.");
+          setRecipes([]); // Pulisci le ricette in caso di errore
+        }
       } finally {
-        setIsLoading(false);
+        if (active) setIsLoading(false);
       }
     };
 
     fetchRecipes(); // Chiama la funzione di fetching
+
+    return () => {
+      active = false;
+    };
   }, [searchQuery]);
 
   if (error) {
@@ -71,7 +82,7 @@ export function RecipesList({ searchQuery }: RecipeListProps) {
           {isLoading ? (
             <tr>
               <td colSpan={3} className="recipes-table-message recipes-table-loading">
-                Carcamento...
+                Caricamento...
               </td>
             </tr>
           ) : recipes.length === 0 && searchQuery ? (

@@ -25,7 +25,6 @@ export const RecipeDetail = () => {
 
       try {
         const details = await getRecipeDetails(recipeId);
-        debugger;
         if (active) setRecipe(details);
       } catch (err) {
         console.error("Errore durante il recupero dei dettagli:", err);
@@ -55,9 +54,12 @@ export const RecipeDetail = () => {
         <img className="recipe-detail-image" src={recipe.image} alt={recipe.title} />
         <ul className="recipe-detail-info">
           <li><b>Tempo di preparazione:</b> {recipe.readyInMinutes} minuti</li>
-          <li><b>Istruzioni:</b> {recipe.instructions} </li>
+          {recipe.analyzedInstructions[0].steps.map((item) => (
+            <li key={item.number}> {item.step}</li>
+          ))}
         </ul>
       </div>
     </main>
   );
 };
+

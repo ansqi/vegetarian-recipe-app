@@ -19,7 +19,7 @@ Il progetto è pensato per esercitarsi con componenti, props, stato, eventi, eff
 - **Vite** per avviare il server di sviluppo e creare la build.
 - **React Router** per la navigazione tra le pagine.
 - **Axios** per le richieste HTTP all'API.
-- **styled-components** per gli stili della barra di navigazione.
+- **CSS** per gli stili dell'interfaccia, raccolti nei fogli di stile dell'applicazione.
 - **Oxlint** per il controllo statico del codice.
 
 ## Requisiti
@@ -51,6 +51,12 @@ Vite mostra l'indirizzo locale nel terminale (di solito `http://localhost:5173`)
 ## Configurare l'API
 
 Le richieste a Spoonacular sono raccolte in `src/api/manager.ts`. Il progetto richiede una chiave API per cercare le ricette e caricarne i dettagli.
+
+1. Rigenerare la chiave Spoonacular dal pannello del proprio account se è già stata esposta.
+2. Impostare `VITE_SPOONACULAR_API_KEY` nel file `.env` (se non esiste, crearlo copiando `.env.example`) usando la nuova chiave.
+3. Riavviare il server Vite dopo aver modificato `.env`.
+
+Il file `.env` è escluso da Git; `.env.example` documenta la variabile richiesta senza contenere credenziali.
 
 **Attenzione:** una chiave inserita nel codice frontend può essere letta dagli utenti e finire nella build pubblica. Non committare chiavi personali o credenziali. Per un progetto pubblico o di produzione, le richieste autenticate dovrebbero passare da un backend che custodisce la chiave. Se si modifica la configurazione per usare variabili d'ambiente Vite, ricordare che le variabili con prefisso `VITE_` vengono comunque incluse nel codice consegnato al browser e non sono segreti.
 
@@ -88,7 +94,8 @@ src/
    - dettaglio: endpoint `recipes/{id}/information`.
 
 
-
+## Link alla pubblicazione netlify
+[vegetarian-vite-app](https://vegetarian-vite-app.netlify.app)
 
 ## Note e limiti conosciuti
 
