@@ -60,10 +60,30 @@
   padding: 6px 12px;
 }
 
+.recipes-list {
+  margin-top: 20px;
+}
+
+.recipes-list-error {
+  color: red;
+  text-align: center;
+}
+
+.recipes-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
 .recipes-table th,
 .recipes-table td {
   border: 1px solid #ddd;
   padding: 8px;
+}
+
+.recipes-table-image {
+  width: 100px;
+  height: 100px;
 }
 
 .recipes-table th {
@@ -119,7 +139,6 @@
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
-  list-style: none;
 }
 
 .recipe-detail-info li + li {

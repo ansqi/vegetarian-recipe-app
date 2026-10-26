@@ -45,21 +45,33 @@ export const RecipeDetail = () => {
   if (error) return <p>{error}</p>;
   if (!recipe) return null;
 
+  const steps = recipe.analyzedInstructions?.[0]?.steps ?? [];
+
   return (
     <main className="recipe-detail">
       <div className="page-title">
         <h1>{recipe.title}</h1>
       </div>
       <div className="recipe-detail-layout">
-        <img className="recipe-detail-image" src={recipe.image} alt={recipe.title} />
-        <ul className="recipe-detail-info">
-          <li><b>Tempo di preparazione:</b> {recipe.readyInMinutes} minuti</li>
-          {recipe.analyzedInstructions[0].steps.map((item) => (
-            <li key={item.number}> {item.step}</li>
-          ))}
-        </ul>
+        <img
+          className="recipe-detail-image"
+          src={recipe.image}
+          alt={recipe.title}
+        />
+
+        <div>
+          <span>
+            <b>Tempo di preparazione:</b> {recipe.readyInMinutes} minuti
+          </span>
+          <ol className="recipe-detail-info">
+            {steps.length === 0 ? (
+              <li>Nessuna istruzione disponibile.</li>
+            ) : (
+              steps.map((item) => <li key={item.number}>{item.step}</li>)
+            )}
+          </ol>
+        </div>
       </div>
     </main>
   );
 };
-

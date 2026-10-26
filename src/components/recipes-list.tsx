@@ -55,16 +55,13 @@ export function RecipesList({ searchQuery }: RecipeListProps) {
   }, [searchQuery]);
 
   if (error) {
-    return <p style={{ color: "red", textAlign: "center" }}>{error}</p>;
+    return <p className="recipes-list-error">{error}</p>;
   }
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div className="recipes-list">
       <h2>Risultati per: "{searchQuery}"</h2>
-      <table
-        className="recipes-table"
-        style={{ width: "100%", borderCollapse: "collapse", marginTop: "10px" }}
-      >
+      <table className="recipes-table">
         <thead>
           <tr className="recipes-table-header">
             <th>
@@ -110,7 +107,7 @@ export function RecipesList({ searchQuery }: RecipeListProps) {
                   <img
                     src={recipe.image}
                     alt={recipe.title}
-                    style={{ width: "100px", height: "100px" }}
+                    className="recipes-table-image"
                   />
                 </td>
               </tr>
